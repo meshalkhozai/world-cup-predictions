@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { LoaderIcon, TagIcon } from '@/components/icons'
 
-const EXAMPLES = ['النمر', 'صقر الصحراء', 'المتنبئ', 'أبو التوقعات']
+const EXAMPLES = ['يلو', 'Falcon', 'نخبتين', 'أبو التوقعات']
 const NICKNAME_RE = /^[a-zA-Z0-9_\u0600-\u06FF ]{3,20}$/
 
 export default function OnboardingPage() {
