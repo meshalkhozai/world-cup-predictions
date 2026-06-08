@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.zafronix.com)",
+      "Bash(curl -s -w \"\\\\n---HTTP_STATUS:%{http_code}---\" -H \"X-API-Key: zwc_pk_2821e809185c250c443d8d30\" \"https://api.zafronix.com/fifa/worldcup/v1/\")",
+      "Bash(curl -s -w \"\\\\n---HTTP_STATUS:%{http_code}---\" -H \"X-API-Key: zwc_pk_2821e809185c250c443d8d30\" \"https://api.zafronix.com/wc-explorer/2026/\")",
+      "Bash(/usr/bin/curl -s -w \"\\\\nHTTP_STATUS:%{http_code}\" -H \"X-API-Key: zwc_pk_2821e809185c250c443d8d30\" \"https://api.zafronix.com/fifa/worldcup/v1/tournaments\")",
+      "Bash(/usr/bin/curl -s -w \"\\\\nHTTP_STATUS:%{http_code}\" -H \"X-API-Key: zwc_pk_2821e809185c250c443d8d30\" \"https://api.zafronix.com/fifa/worldcup/v1/teams\")"
+    ]
+  }
+}

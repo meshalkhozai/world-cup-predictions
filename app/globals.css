@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    --background: 222 84% 5%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --primary: 152 100% 45%;
+    --primary-foreground: 222 84% 5%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --ring: 152 100% 45%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-white antialiased;
+    background-image: radial-gradient(ellipse at top, #0F172A 0%, #020617 60%);
+    min-height: 100vh;
+    font-family: var(--font-thmanyah), system-ui, sans-serif;
+  }
+  h1, h2, h3, h4 {
+    @apply font-bold;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10;
+  }
+  .glass-hover {
+    @apply hover:bg-white/10 transition-colors duration-200;
+  }
+  .text-gradient {
+    @apply bg-gradient-to-l from-brand-green to-emerald-400 bg-clip-text text-transparent;
+  }
+  .text-gold-gradient {
+    @apply bg-gradient-to-l from-brand-gold to-yellow-300 bg-clip-text text-transparent;
+  }
+  .glow-green {
+    box-shadow: 0 0 20px rgba(0, 230, 118, 0.3);
+  }
+}
