@@ -1,0 +1,58 @@
+// All 48 WC 2026 teams — Arabic name + flag
+// Arabic name matches what's stored in matches.home_team / away_team in the DB
+
+export interface Team {
+  name: string // Arabic (matches DB)
+  flag: string // emoji
+}
+
+export const TEAMS: Team[] = [
+  { name: 'الأرجنتين',             flag: '🇦🇷' },
+  { name: 'فرنسا',                 flag: '🇫🇷' },
+  { name: 'البرازيل',              flag: '🇧🇷' },
+  { name: 'إنجلترا',               flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
+  { name: 'إسبانيا',               flag: '🇪🇸' },
+  { name: 'البرتغال',              flag: '🇵🇹' },
+  { name: 'ألمانيا',               flag: '🇩🇪' },
+  { name: 'هولندا',                flag: '🇳🇱' },
+  { name: 'كرواتيا',               flag: '🇭🇷' },
+  { name: 'بلجيكا',                flag: '🇧🇪' },
+  { name: 'المغرب',                flag: '🇲🇦' },
+  { name: 'المكسيك',               flag: '🇲🇽' },
+  { name: 'الولايات المتحدة',      flag: '🇺🇸' },
+  { name: 'كندا',                  flag: '🇨🇦' },
+  { name: 'أوروغواي',              flag: '🇺🇾' },
+  { name: 'كولومبيا',              flag: '🇨🇴' },
+  { name: 'السعودية',              flag: '🇸🇦' },
+  { name: 'اليابان',               flag: '🇯🇵' },
+  { name: 'السنغال',               flag: '🇸🇳' },
+  { name: 'سويسرا',                flag: '🇨🇭' },
+  { name: 'تركيا',                 flag: '🇹🇷' },
+  { name: 'كوريا الجنوبية',        flag: '🇰🇷' },
+  { name: 'أستراليا',              flag: '🇦🇺' },
+  { name: 'النمسا',                flag: '🇦🇹' },
+  { name: 'تونس',                  flag: '🇹🇳' },
+  { name: 'مصر',                   flag: '🇪🇬' },
+  { name: 'السويد',                flag: '🇸🇪' },
+  { name: 'النرويج',               flag: '🇳🇴' },
+  { name: 'إيران',                 flag: '🇮🇷' },
+  { name: 'العراق',                flag: '🇮🇶' },
+  { name: 'الجزائر',               flag: '🇩🇿' },
+  { name: 'الأردن',                flag: '🇯🇴' },
+  { name: 'قطر',                   flag: '🇶🇦' },
+  { name: 'باراغواي',              flag: '🇵🇾' },
+  { name: 'الإكوادور',             flag: '🇪🇨' },
+  { name: 'بنما',                  flag: '🇵🇦' },
+  { name: 'غانا',                  flag: '🇬🇭' },
+  { name: 'الكونغو الديمقراطية',   flag: '🇨🇩' },
+  { name: 'جنوب أفريقيا',          flag: '🇿🇦' },
+  { name: 'هايتي',                 flag: '🇭🇹' },
+  { name: 'نيوزيلندا',             flag: '🇳🇿' },
+  { name: 'اسكتلندا',              flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿' },
+  { name: 'التشيك',                flag: '🇨🇿' },
+  { name: 'البوسنة والهرسك',       flag: '🇧🇦' },
+  { name: 'الرأس الأخضر',          flag: '🇨🇻' },
+  { name: 'ساحل العاج',            flag: '🇨🇮' },
+  { name: 'أوزبكستان',             flag: '🇺🇿' },
+  { name: 'كوراساو',               flag: '🇨🇼' },
+]
