@@ -18,6 +18,19 @@ export const metadata: Metadata = {
   title: 'دوري التوقعات — كأس العالم 2026',
   description: 'توقع نتائج المباريات، اجمع النقاط، وتنافس مع أصدقائك.',
   icons: { icon: '/favicon.ico' },
+  openGraph: {
+    title: 'دوري التوقعات — كأس العالم 2026',
+    description: 'توقع نتائج المباريات، اجمع النقاط، وتنافس مع أصدقائك.',
+    images: [{ url: '/worldcup.png' }],
+    locale: 'ar_SA',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'دوري التوقعات — كأس العالم 2026',
+    description: 'توقع نتائج المباريات، اجمع النقاط، وتنافس مع أصدقائك.',
+    images: ['/worldcup.png'],
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
