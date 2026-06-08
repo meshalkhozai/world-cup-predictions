@@ -17,7 +17,7 @@ const thmanyah = localFont({
 export const metadata: Metadata = {
   title: 'دوري التوقعات — كأس العالم 2026',
   description: 'توقع نتائج المباريات، اجمع النقاط، وتنافس مع أصدقائك.',
-  icons: { icon: '/favicon.ico' },
+  icons: { icon: '/worldcup.png' },
   openGraph: {
     title: 'دوري التوقعات — كأس العالم 2026',
     description: 'توقع نتائج المباريات، اجمع النقاط، وتنافس مع أصدقائك.',
