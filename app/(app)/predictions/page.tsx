@@ -35,12 +35,12 @@ export default async function PredictionsPage() {
         <h1 className="text-2xl font-bold text-white">توقعاتي</h1>
         <div className="text-start">
           <p className="text-2xl font-bold text-gradient">{totalPoints}</p>
-          <p className="text-xs text-white/50">مجموع النقاط</p>
+          <p className="text-xs text-gray-400">مجموع النقاط</p>
         </div>
       </div>
 
       {predictions.length === 0 && (
-        <div className="glass rounded-xl p-8 text-center text-white/40">
+        <div className="glass rounded-xl p-8 text-center text-gray-400">
           لا توجد توقعات بعد. اذهب إلى المباريات وسجّل توقعك الأول.
         </div>
       )}
@@ -48,7 +48,7 @@ export default async function PredictionsPage() {
       {/* Pending */}
       {pending.length > 0 && (
         <section>
-          <h2 className="text-sm font-semibold text-white/50 uppercase tracking-wider mb-3">في انتظار النتيجة</h2>
+          <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">في انتظار النتيجة</h2>
           <div className="space-y-2">
             {pending.map(p => (
               <div key={p.id} className="glass rounded-xl px-4 py-3 flex items-center gap-3">
@@ -56,15 +56,15 @@ export default async function PredictionsPage() {
                   <p className="text-sm font-medium text-white truncate">
                     {p.match.home_team_flag} {p.match.home_team} ضد {p.match.away_team} {p.match.away_team_flag}
                   </p>
-                  <p className="text-xs text-white/40">
+                  <p className="text-xs text-gray-400">
                     {p.match.status === 'live' ? '🟢 مباشر الآن' : 'قادمة'}
                   </p>
                 </div>
                 <div className="text-end">
-                  <p className="text-sm font-bold text-white/70">
+                  <p className="text-sm font-bold text-gray-300">
                     {p.predicted_home_score} – {p.predicted_away_score}
                   </p>
-                  <p className="text-xs text-white/30">توقعك</p>
+                  <p className="text-xs text-gray-500">توقعك</p>
                 </div>
               </div>
             ))}
@@ -75,7 +75,7 @@ export default async function PredictionsPage() {
       {/* Finished */}
       {finished.length > 0 && (
         <section>
-          <h2 className="text-sm font-semibold text-white/50 uppercase tracking-wider mb-3">النتائج</h2>
+          <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">النتائج</h2>
           <div className="space-y-2">
             {finished.map(p => (
               <div key={p.id} className="glass rounded-xl px-4 py-3 flex items-center gap-3">
@@ -84,11 +84,11 @@ export default async function PredictionsPage() {
                     {p.match.home_team_flag} {p.match.home_team} ضد {p.match.away_team} {p.match.away_team_flag}
                   </p>
                   <div className="flex items-center gap-3 mt-0.5">
-                    <span className="text-xs text-white/40">
-                      النتيجة: <span className="text-white/60 font-medium">{p.match.home_score} – {p.match.away_score}</span>
+                    <span className="text-xs text-gray-400">
+                      النتيجة: <span className="text-gray-300 font-medium">{p.match.home_score} – {p.match.away_score}</span>
                     </span>
-                    <span className="text-xs text-white/40">
-                      توقعك: <span className="text-white/60 font-medium">{p.predicted_home_score} – {p.predicted_away_score}</span>
+                    <span className="text-xs text-gray-400">
+                      توقعك: <span className="text-gray-300 font-medium">{p.predicted_home_score} – {p.predicted_away_score}</span>
                     </span>
                   </div>
                 </div>

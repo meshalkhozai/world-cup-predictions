@@ -12,12 +12,12 @@ export default function AppError({ error, reset }: { error: Error & { digest?: s
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-20 text-center space-y-6 animate-fade-in">
-      <p className="text-8xl font-black text-white/10">{is403 ? '403' : '500'}</p>
+      <p className="text-8xl font-black text-gray-800">{is403 ? '403' : '500'}</p>
       <div className="space-y-2">
         <h1 className="text-2xl font-bold text-white">
           {is403 ? 'غير مصرح لك' : 'حدث خطأ'}
         </h1>
-        <p className="text-sm text-white/50">
+        <p className="text-sm text-gray-400">
           {is403 ? 'ليس لديك صلاحية للوصول إلى هذه الصفحة' : 'حدث خطأ غير متوقع، نعتذر عن الإزعاج'}
         </p>
       </div>

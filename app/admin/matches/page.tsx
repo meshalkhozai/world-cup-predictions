@@ -18,7 +18,7 @@ export default async function AdminMatchesPage() {
     <div className="space-y-6 animate-fade-in">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-white">Matches</h1>
-        <div className="flex items-center gap-3 text-xs text-white/40">
+        <div className="flex items-center gap-3 text-xs text-gray-400">
           <span>{upcoming} upcoming</span>
           <span>{finished} finished</span>
           <span className="flex items-center gap-1">

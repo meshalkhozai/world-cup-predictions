@@ -46,7 +46,7 @@ export default async function MatchesPage() {
           مباريات اليوم
         </h2>
         {todayMatches.length === 0 ? (
-          <div className="glass rounded-xl p-6 text-center text-white/40 text-sm">
+          <div className="glass rounded-xl p-6 text-center text-gray-400 text-sm">
             لا توجد مباريات اليوم
           </div>
         ) : (
@@ -66,7 +66,7 @@ export default async function MatchesPage() {
       {/* Coming Soon */}
       {upcomingByDate.length > 0 && (
         <section className="space-y-5">
-          <h2 className="font-semibold text-white/60 text-sm uppercase tracking-wider">قادمة</h2>
+          <h2 className="font-semibold text-gray-300 text-sm uppercase tracking-wider">قادمة</h2>
           {upcomingByDate.map(([dateKey, dayMatches]) => (
             <div key={dateKey}>
               <div className="flex items-center gap-3 mb-2">
@@ -84,10 +84,10 @@ export default async function MatchesPage() {
                         <span className="text-sm text-white truncate">{m.home_team}</span>
                       </div>
                       <div className="flex flex-col items-center shrink-0 px-1">
-                        <span className="text-xs font-semibold text-white/70 tabular-nums">
+                        <span className="text-xs font-semibold text-gray-300 tabular-nums">
                           {formatKickoffTime(m.kickoff_time)}
                         </span>
-                        <span className="text-[10px] text-white/30">بتوقيت مكة</span>
+                        <span className="text-[10px] text-gray-500">بتوقيت مكة</span>
                       </div>
                       <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
                         <span className="text-sm text-white truncate text-end">{m.away_team}</span>
@@ -105,11 +105,11 @@ export default async function MatchesPage() {
       {/* Finished */}
       {pastByDate.length > 0 && (
         <section className="space-y-5">
-          <h2 className="font-semibold text-white/60 text-sm uppercase tracking-wider">منتهية</h2>
+          <h2 className="font-semibold text-gray-300 text-sm uppercase tracking-wider">منتهية</h2>
           {pastByDate.map(([dateKey, dayMatches]) => (
             <div key={dateKey}>
               <div className="flex items-center gap-3 mb-2">
-                <span className="text-xs font-semibold text-white/40 uppercase tracking-wider">
+                <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   {formatMatchDate(dayMatches[0].kickoff_time)}
                 </span>
                 <div className="flex-1 h-px bg-white/10" />

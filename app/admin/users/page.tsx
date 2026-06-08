@@ -27,7 +27,7 @@ export default async function AdminUsersPage() {
     <div className="space-y-6 animate-fade-in">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-white">المستخدمون</h1>
-        <span className="text-sm text-white/40">{all.length} مستخدم</span>
+        <span className="text-sm text-gray-400">{all.length} مستخدم</span>
       </div>
 
       <div className="space-y-2">
@@ -45,19 +45,19 @@ export default async function AdminUsersPage() {
               <div className="flex items-center gap-2">
                 <p className="text-sm font-semibold text-white truncate">{u.nickname || '(بدون اسم)'}</p>
                 {u.is_admin && <span className="text-[10px] px-1.5 py-0.5 rounded bg-brand-gold/20 text-brand-gold font-medium">مدير</span>}
-                {!u.onboarding_completed && <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-white/40">لم يكمل التسجيل</span>}
+                {!u.onboarding_completed && <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-gray-400">لم يكمل التسجيل</span>}
               </div>
-              <p className="text-xs text-white/40 truncate">{u.email}</p>
+              <p className="text-xs text-gray-400 truncate">{u.email}</p>
             </div>
 
             <div className="text-end shrink-0 space-y-0.5">
               <p className="text-sm font-bold text-brand-gold">{u.total_points} نقطة</p>
-              <p className="text-xs text-white/40">
+              <p className="text-xs text-gray-400">
                 {u.exact_predictions}🎯 {u.correct_predictions}✓ {u.wrong_predictions}✗
               </p>
             </div>
 
-            <div className="text-xs text-white/30 shrink-0 hidden sm:block">
+            <div className="text-xs text-gray-500 shrink-0 hidden sm:block">
               {new Date(u.created_at).toLocaleDateString('ar-SA', { month: 'short', day: 'numeric' })}
             </div>
           </div>

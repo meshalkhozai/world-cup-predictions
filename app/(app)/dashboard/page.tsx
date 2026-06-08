@@ -33,12 +33,12 @@ export default async function DashboardPage() {
           </div>
         )}
         <div className="flex-1 min-w-0">
-          <p className="text-xs text-white/50 uppercase tracking-wider">أهلاً بعودتك</p>
+          <p className="text-xs text-gray-400 uppercase tracking-wider">أهلاً بعودتك</p>
           <h2 className="text-xl font-bold text-white truncate">{typedProfile.nickname}</h2>
         </div>
         <div className="text-start">
           <p className="text-2xl font-bold text-gradient">{typedProfile.total_points}</p>
-          <p className="text-xs text-white/50">نقطة</p>
+          <p className="text-xs text-gray-400">نقطة</p>
         </div>
       </div>
 
@@ -60,7 +60,7 @@ export default async function DashboardPage() {
         </div>
 
         {todayMatches.length === 0 ? (
-          <div className="glass rounded-xl p-6 text-center text-white/40 text-sm">
+          <div className="glass rounded-xl p-6 text-center text-gray-400 text-sm">
             لا توجد مباريات مجدولة اليوم
           </div>
         ) : (
@@ -74,7 +74,7 @@ export default async function DashboardPage() {
                   </div>
                   <div className="text-center px-3">
                     {isMatchLocked(match.kickoff_time, match.status) ? (
-                      <span className="text-xs font-bold text-white/60">
+                      <span className="text-xs font-bold text-gray-300">
                         {match.status === 'finished' ? `${match.home_score} - ${match.away_score}` : 'مباشر'}
                       </span>
                     ) : (
@@ -111,7 +111,7 @@ function StatCard({ label, value, color }: { label: string; value: string | numb
   return (
     <div className="glass rounded-xl p-4 text-center">
       <p className={`text-2xl font-bold ${color}`}>{value}</p>
-      <p className="text-xs text-white/50 mt-0.5">{label}</p>
+      <p className="text-xs text-gray-400 mt-0.5">{label}</p>
     </div>
   )
 }

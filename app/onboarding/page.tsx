@@ -70,13 +70,13 @@ export default function OnboardingPage() {
             <TagIcon size={28} className="text-brand-green" />
           </div>
           <h1 className="text-2xl font-bold text-white">اختر اسمك المستعار</h1>
-          <p className="text-sm text-white/50 mt-1">هذه هويتك في الدوري. اختر بحكمة!</p>
+          <p className="text-sm text-gray-400 mt-1">هذه هويتك في الدوري. اختر بحكمة!</p>
         </div>
 
         <div className="glass rounded-2xl p-6 space-y-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-1.5">
-              <label htmlFor="nickname" className="text-sm font-medium text-white/70">الاسم المستعار</label>
+              <label htmlFor="nickname" className="text-sm font-medium text-gray-300">الاسم المستعار</label>
               <input
                 id="nickname"
                 type="text"
@@ -91,11 +91,11 @@ export default function OnboardingPage() {
             </div>
 
             <div className="space-y-2">
-              <p className="text-xs text-white/40">أمثلة</p>
+              <p className="text-xs text-gray-400">أمثلة</p>
               <div className="flex flex-wrap gap-2">
                 {EXAMPLES.map(ex => (
                   <button key={ex} type="button" onClick={() => { setNickname(ex); setError('') }}
-                    className="px-3 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-white/60 hover:border-brand-green/40 hover:text-brand-green transition-colors">
+                    className="px-3 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-gray-300 hover:border-brand-green/40 hover:text-brand-green transition-colors">
                     {ex}
                   </button>
                 ))}

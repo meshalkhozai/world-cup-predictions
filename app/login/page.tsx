@@ -35,7 +35,7 @@ export default function LoginPage() {
             />
           </div>
           <h1 className="text-2xl font-bold text-white">كأس العالم 2026</h1>
-          <p className="text-sm text-white/50 mt-1">دوري التوقعات</p>
+          <p className="text-sm text-gray-400 mt-1">دوري التوقعات</p>
         </div>
 
         <div className="glass rounded-2xl p-6 space-y-6">
@@ -43,7 +43,7 @@ export default function LoginPage() {
             <h2 className="text-lg font-semibold text-white">
               انضم إلى الدوري
             </h2>
-            <p className="text-sm text-white/50">
+            <p className="text-sm text-gray-400">
               سجّل دخولك لتوقع نتائج المباريات وتنافس مع أصدقائك
             </p>
           </div>
@@ -61,7 +61,7 @@ export default function LoginPage() {
             {loading ? "جارٍ التحويل…" : "الدخول عبر Google"}
           </button>
 
-          <p className="text-center text-xs text-white/30">
+          <p className="text-center text-xs text-gray-500">
             دوري خاص · التوقعات مرئية للأعضاء فقط
           </p>
         </div>

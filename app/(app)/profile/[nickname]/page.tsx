@@ -62,7 +62,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ nickna
             {profile.nickname}
             {isMe && <span className="me-2 text-sm text-brand-green font-normal">(أنت)</span>}
           </h1>
-          <p className="text-sm text-white/40">
+          <p className="text-sm text-gray-400">
             عضو منذ {new Date(profile.created_at).toLocaleDateString('ar-SA', { month: 'long', year: 'numeric' })}
           </p>
         </div>
@@ -80,7 +80,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ nickna
       <section>
         <h2 className="font-semibold text-white mb-3">آخر التوقعات</h2>
         {typedPredictions.length === 0 ? (
-          <div className="glass rounded-xl p-6 text-center text-white/40 text-sm">
+          <div className="glass rounded-xl p-6 text-center text-gray-400 text-sm">
             لا توجد توقعات على مباريات منتهية بعد
           </div>
         ) : (
@@ -92,11 +92,11 @@ export default async function ProfilePage({ params }: { params: Promise<{ nickna
                     {p.match.home_team_flag} {p.match.home_team} ضد {p.match.away_team} {p.match.away_team_flag}
                   </p>
                   <div className="flex items-center gap-3 mt-0.5">
-                    <span className="text-xs text-white/40">
-                      النتيجة: <span className="text-white/60 font-medium">{p.match.home_score} – {p.match.away_score}</span>
+                    <span className="text-xs text-gray-400">
+                      النتيجة: <span className="text-gray-300 font-medium">{p.match.home_score} – {p.match.away_score}</span>
                     </span>
-                    <span className="text-xs text-white/40">
-                      التوقع: <span className="text-white/60 font-medium">{p.predicted_home_score} – {p.predicted_away_score}</span>
+                    <span className="text-xs text-gray-400">
+                      التوقع: <span className="text-gray-300 font-medium">{p.predicted_home_score} – {p.predicted_away_score}</span>
                     </span>
                   </div>
                 </div>
@@ -117,7 +117,7 @@ function StatCard({ label, value, color }: { label: string; value: number; color
   return (
     <div className="glass rounded-xl p-4 text-center">
       <p className={`text-2xl font-bold ${color}`}>{value}</p>
-      <p className="text-xs text-white/50 mt-0.5">{label}</p>
+      <p className="text-xs text-gray-400 mt-0.5">{label}</p>
     </div>
   )
 }

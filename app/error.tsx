@@ -10,10 +10,10 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="text-center space-y-6 animate-fade-in">
-        <p className="text-8xl font-black text-white/10">500</p>
+        <p className="text-8xl font-black text-gray-800">500</p>
         <div className="space-y-2">
           <h1 className="text-2xl font-bold text-white">حدث خطأ</h1>
-          <p className="text-sm text-white/50">حدث خطأ غير متوقع، نعتذر عن الإزعاج</p>
+          <p className="text-sm text-gray-400">حدث خطأ غير متوقع، نعتذر عن الإزعاج</p>
         </div>
         <div className="flex items-center justify-center gap-3">
           <button

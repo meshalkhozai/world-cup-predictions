@@ -5,7 +5,7 @@ export default function GuidePage() {
     <div className="max-w-2xl mx-auto px-4 py-6 space-y-6 animate-fade-in">
       <div className="text-center space-y-1">
         <h1 className="text-2xl font-bold text-white">كيف تلعب؟</h1>
-        <p className="text-sm text-white/50">كل اللي تحتاج تعرفه عن دوري التوقعات</p>
+        <p className="text-sm text-gray-400">كل اللي تحتاج تعرفه عن دوري التوقعات</p>
       </div>
 
       <Section icon={<StarIcon size={18} className="text-brand-gold" />} title="الفكرة الأساسية">
@@ -31,7 +31,7 @@ export default function GuidePage() {
           />
           <ScoreRow
             badge="0 نقاط"
-            badgeColor="bg-white/10 text-white/40"
+            badgeColor="bg-white/10 text-gray-400"
             title="توقع خاطئ"
             desc="الفائز أو النتيجة مختلفة تماماً عن توقعك"
           />
@@ -50,7 +50,7 @@ export default function GuidePage() {
               <span className="shrink-0 w-6 h-6 rounded-full bg-brand-green/20 text-brand-green text-xs font-bold flex items-center justify-center mt-0.5">
                 {i + 1}
               </span>
-              <span className="text-white/70 text-sm">{step}</span>
+              <span className="text-gray-300 text-sm">{step}</span>
             </li>
           ))}
         </ol>
@@ -78,7 +78,7 @@ export default function GuidePage() {
             'يمكنك تعديل توقعك أي عدد من المرات ما دامت المباراة لم تبدأ.',
             'توقعات المجتمع تظهر بعد انطلاق المباراة — استفد منها للمباريات القادمة.',
           ].map((tip, i) => (
-            <li key={i} className="flex items-start gap-2 text-sm text-white/70">
+            <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
               <span className="text-brand-green mt-0.5">•</span>
               {tip}
             </li>
@@ -96,7 +96,7 @@ function Section({ icon, title, children, light }: { icon?: React.ReactNode; tit
         {icon}
         {title}
       </h2>
-      <div className="text-white/60 text-sm leading-relaxed">{children}</div>
+      <div className="text-gray-300 text-sm leading-relaxed">{children}</div>
     </div>
   )
 }
@@ -114,7 +114,7 @@ function ScoreRow({ badge, badgeColor, title, desc }: {
       </span>
       <div>
         <p className="text-white text-sm font-medium">{title}</p>
-        <p className="text-white/50 text-xs mt-0.5">{desc}</p>
+        <p className="text-gray-400 text-xs mt-0.5">{desc}</p>
       </div>
     </div>
   )

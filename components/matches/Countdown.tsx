@@ -35,11 +35,11 @@ export function Countdown({ kickoffTime }: { kickoffTime: string }) {
       {h > 0 && (
         <>
           <TimeUnit value={h} label="س" />
-          <span className="text-white/30 text-sm mb-3">:</span>
+          <span className="text-gray-500 text-sm mb-3">:</span>
         </>
       )}
       <TimeUnit value={m} label="د" />
-      <span className="text-white/30 text-sm mb-3">:</span>
+      <span className="text-gray-500 text-sm mb-3">:</span>
       <TimeUnit value={s} label="ث" />
     </div>
   )
@@ -51,7 +51,7 @@ function TimeUnit({ value, label }: { value: number; label: string }) {
       <span className="text-xl font-bold text-brand-green tabular-nums w-8 text-center">
         {String(value).padStart(2, '0')}
       </span>
-      <span className="text-xs text-white/30">{label}</span>
+      <span className="text-xs text-gray-500">{label}</span>
     </div>
   )
 }

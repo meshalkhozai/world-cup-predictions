@@ -70,17 +70,17 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6 space-y-6 animate-fade-in">
-      <Link href="/matches" className="inline-flex items-center gap-1.5 text-sm text-white/50 hover:text-white transition-colors">
+      <Link href="/matches" className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors">
         <ArrowRightIcon size={15} />
         العودة للمباريات
       </Link>
 
       {/* Match header */}
       <div className="glass rounded-2xl p-6 space-y-4">
-        <div className="flex items-center justify-between text-xs text-white/40">
+        <div className="flex items-center justify-between text-xs text-gray-400">
           <span>{formatMatchDate(typedMatch.kickoff_time)}</span>
           <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-            typedMatch.status === 'finished' ? 'bg-white/10 text-white/40' :
+            typedMatch.status === 'finished' ? 'bg-white/10 text-gray-400' :
             typedMatch.status === 'live' ? 'bg-green-500/20 text-green-400' :
             'bg-blue-500/10 text-blue-400'
           }`}>
@@ -101,7 +101,7 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
                 {typedMatch.home_score} – {typedMatch.away_score}
               </span>
             ) : (
-              <span className="text-xl font-bold text-white/30">ضد</span>
+              <span className="text-xl font-bold text-gray-500">ضد</span>
             )}
           </div>
 
@@ -113,7 +113,7 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
 
         {typedMyPrediction && (
           <div className="rounded-xl bg-white/5 p-3 text-center">
-            <p className="text-xs text-white/50 mb-1">توقعك</p>
+            <p className="text-xs text-gray-400 mb-1">توقعك</p>
             <p className="text-lg font-bold text-white">
               {typedMyPrediction.predicted_home_score} – {typedMyPrediction.predicted_away_score}
             </p>
@@ -129,7 +129,7 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
 
       {/* Lock message */}
       {!locked && (
-        <div className="glass rounded-xl p-4 text-center text-sm text-white/50">
+        <div className="glass rounded-xl p-4 text-center text-sm text-gray-400">
           🔒 توقعات المستخدمين ستظهر بعد انطلاق المباراة
         </div>
       )}
@@ -139,7 +139,7 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
         <div className="glass rounded-2xl p-5 space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="font-semibold text-white">توقعات المجتمع</h2>
-            <span className="text-xs text-white/40">{insights.total_predictions} توقع</span>
+            <span className="text-xs text-gray-400">{insights.total_predictions} توقع</span>
           </div>
           <div className="space-y-2">
             <PctBar label={typedMatch.home_team} flag={typedMatch.home_team_flag ?? ''} pct={insights.home_win_pct} color="bg-blue-500" />
@@ -164,7 +164,7 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
                   </div>
                 )}
                 <span className="text-sm text-white flex-1 truncate">{p.nickname}</span>
-                <span className="text-sm font-bold text-white/70">
+                <span className="text-sm font-bold text-gray-300">
                   {p.predicted_home_score} – {p.predicted_away_score}
                 </span>
                 {typedMatch.status === 'finished' && (
@@ -179,7 +179,7 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
       )}
 
       {locked && publicPredictions.length === 0 && (
-        <div className="glass rounded-xl p-6 text-center text-white/40 text-sm">
+        <div className="glass rounded-xl p-6 text-center text-gray-400 text-sm">
           لم يتم تسجيل أي توقعات لهذه المباراة
         </div>
       )}
@@ -191,7 +191,7 @@ function PctBar({ label, flag, pct, color }: { label: string; flag: string; pct:
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between text-sm">
-        <span className="text-white/70">{flag} {label}</span>
+        <span className="text-gray-300">{flag} {label}</span>
         <span className="font-semibold text-white">{pct}%</span>
       </div>
       <div className="h-2 bg-white/10 rounded-full overflow-hidden">

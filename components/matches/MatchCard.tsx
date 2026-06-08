@@ -82,8 +82,8 @@ export function MatchCard({ match, prediction, userId }: Props) {
             </span>
           ) : (
             <>
-              <span className="text-xs text-white/50">{formatKickoffTime(match.kickoff_time)}</span>
-              <span className="text-xs text-white/30">بتوقيت مكة</span>
+              <span className="text-xs text-gray-400">{formatKickoffTime(match.kickoff_time)}</span>
+              <span className="text-xs text-gray-500">بتوقيت مكة</span>
             </>
           )}
         </div>
@@ -101,7 +101,7 @@ export function MatchCard({ match, prediction, userId }: Props) {
       {locked ? (
         <div className="rounded-xl bg-white/5 p-3 text-center">
           {prediction ? (
-            <p className="text-sm text-white/60">
+            <p className="text-sm text-gray-300">
               توقعك: <span className="text-white font-semibold">
                 {prediction.predicted_home_score} – {prediction.predicted_away_score}
               </span>
@@ -116,12 +116,12 @@ export function MatchCard({ match, prediction, userId }: Props) {
               )} */}
             </p>
           ) : (
-            <p className="text-sm text-white/40">التوقعات مغلقة</p>
+            <p className="text-sm text-gray-400">التوقعات مغلقة</p>
           )}
         </div>
       ) : (
         <form onSubmit={handleSave} className="space-y-3">
-          <p className="text-xs text-white/50 text-center">توقعك للمباراة</p>
+          <p className="text-xs text-gray-400 text-center">توقعك للمباراة</p>
           <div className="flex items-center justify-center gap-3">
             <input
               type="text"
@@ -133,7 +133,7 @@ export function MatchCard({ match, prediction, userId }: Props) {
               placeholder="0"
               className="w-16 text-center text-xl font-bold px-2 py-2 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-brand-green/50 focus:bg-white/10 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             />
-            <span className="text-white/40 text-xl font-bold">–</span>
+            <span className="text-gray-400 text-xl font-bold">–</span>
             <input
               type="text"
               inputMode="numeric"
@@ -158,7 +158,7 @@ export function MatchCard({ match, prediction, userId }: Props) {
 
       <Link
         href={`/matches/${match.id}`}
-        className="block text-center text-xs text-white/30 hover:text-brand-green transition-colors"
+        className="block text-center text-xs text-gray-500 hover:text-brand-green transition-colors"
       >
         {locked ? 'عرض التوقعات والإحصائيات ←' : 'تفاصيل المباراة ←'}
       </Link>

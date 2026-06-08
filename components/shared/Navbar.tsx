@@ -48,7 +48,7 @@ export function Navbar({ profile }: NavbarProps) {
                 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors',
                 pathname === href || (pathname.startsWith(href) && href !== '/dashboard')
                   ? 'bg-brand-green/10 text-brand-green'
-                  : 'text-white/60 hover:text-white hover:bg-white/5'
+                  : 'text-gray-300 hover:text-white hover:bg-white/5'
               )}
             >
               <Icon size={15} />
@@ -62,7 +62,7 @@ export function Navbar({ profile }: NavbarProps) {
                 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors',
                 pathname.startsWith('/admin')
                   ? 'bg-brand-gold/10 text-brand-gold'
-                  : 'text-white/60 hover:text-white hover:bg-white/5'
+                  : 'text-gray-300 hover:text-white hover:bg-white/5'
               )}
             >
               <SettingsIcon size={15} />
@@ -83,7 +83,7 @@ export function Navbar({ profile }: NavbarProps) {
             <p className="text-xs font-medium text-white">{profile.nickname}</p>
             <p className="text-xs text-brand-green">{profile.total_points} نقطة</p>
           </div>
-          <button onClick={handleSignOut} className="text-white/40 hover:text-white/70 transition-colors">
+          <button onClick={handleSignOut} className="text-gray-400 hover:text-white transition-colors">
             <LogOutIcon size={16} />
           </button>
         </div>
@@ -106,7 +106,7 @@ export function Navbar({ profile }: NavbarProps) {
         </div>
         <button
           onClick={handleSignOut}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-white/50 hover:text-white hover:bg-white/10 transition-colors border border-white/10"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors border border-white/10"
         >
           <LogOutIcon size={13} />
           خروج
@@ -123,7 +123,7 @@ export function Navbar({ profile }: NavbarProps) {
               href={href}
               className={cn(
                 'flex-1 flex flex-col items-center gap-0.5 py-2.5 text-xs transition-colors',
-                active ? 'text-brand-green' : 'text-white/40'
+                active ? 'text-brand-green' : 'text-gray-400'
               )}
             >
               <Icon size={20} />

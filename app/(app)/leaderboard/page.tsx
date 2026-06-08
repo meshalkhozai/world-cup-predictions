@@ -30,7 +30,7 @@ export default async function LeaderboardPage() {
       <h1 className="text-2xl font-bold text-white">الترتيب</h1>
 
       {board.length === 0 && (
-        <div className="glass rounded-xl p-8 text-center text-white/40">
+        <div className="glass rounded-xl p-8 text-center text-gray-400">
           لا توجد توقعات بعد. سيظهر الترتيب بعد تسجيل التوقعات.
         </div>
       )}
@@ -58,9 +58,9 @@ export default async function LeaderboardPage() {
               >
                 <div className="w-8 text-center shrink-0">
                   {entry.rank === 1 ? <span className="text-sm font-bold text-brand-gold">#1</span> :
-                   entry.rank === 2 ? <span className="text-sm font-bold text-white/60">#2</span> :
+                   entry.rank === 2 ? <span className="text-sm font-bold text-gray-300">#2</span> :
                    entry.rank === 3 ? <span className="text-sm font-bold text-amber-600">#3</span> :
-                   <span className="text-sm font-bold text-white/40">#{entry.rank}</span>}
+                   <span className="text-sm font-bold text-gray-400">#{entry.rank}</span>}
                 </div>
 
                 {entry.avatar_url ? (
@@ -77,14 +77,14 @@ export default async function LeaderboardPage() {
                       {entry.nickname} {isMe && <span className="text-xs font-normal opacity-60">(أنت)</span>}
                     </p>
                   </Link>
-                  <p className="text-xs text-white/40">
+                  <p className="text-xs text-gray-400">
                     {entry.exact_predictions} دقيق · {entry.correct_predictions} صحيح
                   </p>
                 </div>
 
                 <div className="text-end shrink-0">
                   <p className="text-lg font-bold text-white">{entry.total_points}</p>
-                  <p className="text-xs text-white/40">نقطة</p>
+                  <p className="text-xs text-gray-400">نقطة</p>
                 </div>
               </div>
             )
@@ -97,8 +97,8 @@ export default async function LeaderboardPage() {
 
 function PodiumCard({ entry, currentUserId, height }: { entry: LeaderboardEntry; currentUserId: string; height: string }) {
   const isMe = entry.id === currentUserId
-  const rankColors = ['text-brand-gold', 'text-white/60', 'text-amber-600']
-  const rankColor = rankColors[entry.rank - 1] ?? 'text-white/40'
+  const rankColors = ['text-brand-gold', 'text-gray-300', 'text-amber-600']
+  const rankColor = rankColors[entry.rank - 1] ?? 'text-gray-400'
 
   return (
     <div className="flex flex-col items-center gap-1 flex-1">
@@ -113,7 +113,7 @@ function PodiumCard({ entry, currentUserId, height }: { entry: LeaderboardEntry;
       <p className="text-xs font-semibold text-white text-center truncate w-full px-1">{entry.nickname}</p>
       <p className="text-sm font-bold text-brand-gold">{entry.total_points} نقطة</p>
       <div className={`w-full ${height} glass rounded-t-lg flex items-end justify-center pb-1`}>
-        <span className="text-xs text-white/50">{entry.rank}</span>
+        <span className="text-xs text-gray-400">{entry.rank}</span>
       </div>
     </div>
   )

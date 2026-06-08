@@ -21,7 +21,7 @@ export function MatchAdminList({ matches }: { matches: Match[] }) {
 
   if (matches.length === 0) {
     return (
-      <div className="glass rounded-xl p-8 text-center text-white/40">
+      <div className="glass rounded-xl p-8 text-center text-gray-400">
         No matches yet. Import a CSV above.
       </div>
     )
@@ -35,7 +35,7 @@ export function MatchAdminList({ matches }: { matches: Match[] }) {
           <div key={m.id} className="glass rounded-xl px-4 py-3 flex items-center gap-3">
             {/* Status badge */}
             <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-              m.status === 'finished' ? 'bg-white/10 text-white/40' :
+              m.status === 'finished' ? 'bg-white/10 text-gray-400' :
               m.status === 'live' ? 'bg-green-500/20 text-green-400 animate-pulse' :
               'bg-blue-500/10 text-blue-400'
             }`}>
@@ -47,7 +47,7 @@ export function MatchAdminList({ matches }: { matches: Match[] }) {
               <p className="text-sm font-medium text-white truncate">
                 {m.home_team_flag} {m.home_team} vs {m.away_team} {m.away_team_flag}
               </p>
-              <p className="text-xs text-white/40">
+              <p className="text-xs text-gray-400">
                 {formatMatchDate(m.kickoff_time)} · {formatKickoffTime(m.kickoff_time)} (مكة)
                 {m.venue && ` · ${m.venue}`}
               </p>
@@ -61,7 +61,7 @@ export function MatchAdminList({ matches }: { matches: Match[] }) {
             )}
 
             {/* Stage */}
-            <span className="text-xs text-white/30 hidden sm:block">{m.stage}</span>
+            <span className="text-xs text-gray-500 hidden sm:block">{m.stage}</span>
 
             {/* Delete */}
             <button

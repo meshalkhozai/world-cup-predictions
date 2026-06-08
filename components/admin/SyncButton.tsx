@@ -34,7 +34,7 @@ export function SyncButton() {
       <div className="flex items-center justify-between gap-4">
         <div>
           <h2 className="font-semibold text-white">مزامنة من Zafronix API</h2>
-          <p className="text-xs text-white/40 mt-0.5">
+          <p className="text-xs text-gray-400 mt-0.5">
             جلب جميع مباريات كأس العالم · تحديث النتائج · حساب النقاط تلقائيًا
           </p>
         </div>

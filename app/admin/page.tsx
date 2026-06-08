@@ -26,7 +26,7 @@ export default async function AdminPage() {
           <span className="w-2 h-2 rounded-full bg-brand-green animate-pulse" />
           <p className="text-sm font-semibold text-white">المزامنة التلقائية مفعّلة</p>
         </div>
-        <p className="text-sm text-white/50">
+        <p className="text-sm text-gray-400">
           تتزامن المباريات والنتائج تلقائيًا من Zafronix مرة يوميًا.
           يمكنك المزامنة يدويًا من صفحة المباريات بعد انتهاء كل مباراة.
         </p>
@@ -37,14 +37,14 @@ export default async function AdminPage() {
           <UsersIcon size={28} className="text-brand-gold shrink-0" />
           <div>
             <p className="font-semibold text-white">إدارة المستخدمين</p>
-            <p className="text-sm text-white/50">عرض جميع المستخدمين وإحصائياتهم</p>
+            <p className="text-sm text-gray-400">عرض جميع المستخدمين وإحصائياتهم</p>
           </div>
         </Link>
         <Link href="/admin/matches" className="glass glass-hover rounded-xl p-5 flex items-center gap-4">
           <RefreshIcon size={28} className="text-brand-green shrink-0" />
           <div>
             <p className="font-semibold text-white">مزامنة المباريات</p>
-            <p className="text-sm text-white/50">تحديث النتائج وحساب النقاط</p>
+            <p className="text-sm text-gray-400">تحديث النتائج وحساب النقاط</p>
           </div>
         </Link>
       </div>
@@ -57,7 +57,7 @@ function StatCard({ label, value, icon }: { label: string; value: number; icon: 
     <div className="glass rounded-xl p-4 text-center space-y-1">
       <div className="flex justify-center">{icon}</div>
       <p className="text-2xl font-bold text-white">{value}</p>
-      <p className="text-xs text-white/50">{label}</p>
+      <p className="text-xs text-gray-400">{label}</p>
     </div>
   )
 }
