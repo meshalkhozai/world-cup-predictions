@@ -7,8 +7,10 @@ import { fetchAllMatches } from '@/lib/zafronix'
 export async function GET(request: Request) {
   const auth = request.headers.get('authorization')
   const secret = process.env.CRON_SECRET
+  const { searchParams } = new URL(request.url)
+  const querySecret = searchParams.get('secret')
 
-  if (!secret || auth !== `Bearer ${secret}`) {
+  if (!secret || (auth !== `Bearer ${secret}` && querySecret !== secret)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
