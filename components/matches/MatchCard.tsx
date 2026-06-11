@@ -131,7 +131,7 @@ export function MatchCard({ match, prediction, userId }: Props) {
               placeholder="0"
               className="w-16 text-center text-xl font-bold px-2 py-2 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-brand-green/50 focus:bg-white/10 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             />
-            <span className="text-gray-400 text-xl font-bold">vs</span>
+            <span className="text-gray-400 text-xl font-bold">ضد</span>
             <input
               type="text"
               inputMode="numeric"
