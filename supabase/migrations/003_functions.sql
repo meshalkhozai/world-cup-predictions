@@ -111,8 +111,7 @@ AS $$
     p.champion_pick,
     p.created_at
   FROM public.profiles p
-  WHERE p.onboarding_completed = true
-    AND p.is_admin = false;
+  WHERE p.onboarding_completed = true;
 $$;
 
 -- ─── get_match_insights ───────────────────────────────────────
