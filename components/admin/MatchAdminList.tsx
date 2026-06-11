@@ -45,7 +45,7 @@ export function MatchAdminList({ matches }: { matches: Match[] }) {
             {/* Teams */}
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-white truncate">
-                {m.home_team_flag} {m.home_team} ضد {m.away_team} {m.away_team_flag}
+                {m.home_team_flag} {m.home_team} - {m.away_team} {m.away_team_flag}
               </p>
               <p className="text-xs text-gray-400">
                 {formatMatchDate(m.kickoff_time)} · {formatKickoffTime(m.kickoff_time)} (مكة)
