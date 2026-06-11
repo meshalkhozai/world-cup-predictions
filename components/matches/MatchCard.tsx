@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
-import { isMatchLocked, formatKickoffTime } from '@/lib/timezone'
+import { isMatchLocked, hoursUntilPredictionOpen, formatKickoffTime } from '@/lib/timezone'
 import { Countdown } from './Countdown'
 import type { Match, Prediction } from '@/types'
 
@@ -18,6 +18,8 @@ export function MatchCard({ match, prediction, userId }: Props) {
   const router = useRouter()
   const supabase = createClient()
   const locked = isMatchLocked(match.kickoff_time, match.status)
+  const hoursLeft = locked && match.status === 'upcoming' ? hoursUntilPredictionOpen(match.kickoff_time) : 0
+  const tooEarly = hoursLeft > 0
 
   const [home, setHome] = useState(prediction?.predicted_home_score?.toString() ?? '')
   const [away, setAway] = useState(prediction?.predicted_away_score?.toString() ?? '')
@@ -100,20 +102,15 @@ export function MatchCard({ match, prediction, userId }: Props) {
       {/* Prediction form */}
       {locked ? (
         <div className="rounded-xl bg-white/5 p-3 text-center">
-          {prediction ? (
+          {tooEarly ? (
+            <p className="text-sm text-gray-400">
+              يفتح التوقع بعد <span className="text-white font-semibold">{Math.ceil(hoursLeft)} ساعة</span>
+            </p>
+          ) : prediction ? (
             <p className="text-sm text-gray-300">
               توقعك: <span className="text-white font-semibold">
                 {prediction.predicted_home_score} – {prediction.predicted_away_score}
               </span>
-              {/* {match.status === 'finished' && (
-                <span className={`me-2 text-xs font-semibold ${
-                  prediction.points_awarded === 3 ? 'text-brand-gold' :
-                  prediction.points_awarded === 1 ? 'text-brand-green' : 'text-white'
-                }`}>
-                  {prediction.points_awarded === 3 ? '+3 توقع دقيق!' :
-                   prediction.points_awarded === 1 ? '+1 نتيجة صحيحة' : '+0'}
-                </span>
-              )} */}
             </p>
           ) : (
             <p className="text-sm text-gray-400">التوقعات مغلقة</p>

@@ -2,6 +2,12 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
+import { TEAMS } from '@/lib/teams'
+
+function getChampionFlag(name: string | null): string {
+  if (!name) return ''
+  return TEAMS.find(t => t.name === name)?.flag ?? ''
+}
 
 interface LeaderboardEntry {
   rank: number
@@ -12,6 +18,7 @@ interface LeaderboardEntry {
   exact_predictions: number
   correct_predictions: number
   wrong_predictions: number
+  champion_pick: string | null
   created_at: string
 }
 
@@ -77,9 +84,16 @@ export default async function LeaderboardPage() {
                       {entry.nickname} {isMe && <span className="text-xs font-normal opacity-60">(أنت)</span>}
                     </p>
                   </Link>
-                  <p className="text-xs text-gray-400">
-                    {entry.exact_predictions} دقيق · {entry.correct_predictions} صحيح
-                  </p>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <p className="text-xs text-gray-400">
+                      {entry.exact_predictions} دقيق · {entry.correct_predictions} صحيح
+                    </p>
+                    {entry.champion_pick && (
+                      <span className="text-xs text-gray-400 flex items-center gap-1">
+                        · {getChampionFlag(entry.champion_pick)} {entry.champion_pick}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 <div className="text-end shrink-0">

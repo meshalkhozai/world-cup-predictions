@@ -88,6 +88,7 @@ RETURNS TABLE (
   exact_predictions   INT,
   correct_predictions INT,
   wrong_predictions   INT,
+  champion_pick       TEXT,
   created_at          TIMESTAMPTZ
 )
 LANGUAGE sql STABLE SECURITY DEFINER
@@ -107,9 +108,11 @@ AS $$
     p.exact_predictions,
     p.correct_predictions,
     p.wrong_predictions,
+    p.champion_pick,
     p.created_at
   FROM public.profiles p
-  WHERE p.onboarding_completed = true;
+  WHERE p.onboarding_completed = true
+    AND p.is_admin = false;
 $$;
 
 -- ─── get_match_insights ───────────────────────────────────────

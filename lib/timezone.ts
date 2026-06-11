@@ -17,9 +17,24 @@ export function isMatchToday(kickoffTime: string): boolean {
   return matchDateInRiyadh(kickoffTime) === todayInRiyadh()
 }
 
+const PREDICTION_WINDOW_HOURS = 8
+
 export function isMatchLocked(kickoffTime: string, status?: string): boolean {
   if (status === 'finished' || status === 'live') return true
-  return new Date() >= new Date(kickoffTime)
+  const now = Date.now()
+  const kickoff = new Date(kickoffTime).getTime()
+  if (now >= kickoff) return true
+  // Open if match is today OR within 8 hours
+  const isToday = matchDateInRiyadh(kickoffTime) === todayInRiyadh()
+  const hoursUntil = (kickoff - now) / (1000 * 60 * 60)
+  const withinWindow = hoursUntil <= PREDICTION_WINDOW_HOURS
+  return !isToday && !withinWindow
+}
+
+export function hoursUntilPredictionOpen(kickoffTime: string): number {
+  const kickoff = new Date(kickoffTime).getTime()
+  const hoursUntil = (kickoff - Date.now()) / (1000 * 60 * 60)
+  return Math.max(0, hoursUntil - PREDICTION_WINDOW_HOURS)
 }
 
 export function formatKickoffTime(kickoffTime: string): string {
