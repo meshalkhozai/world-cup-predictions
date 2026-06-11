@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { isMatchToday, matchDateInRiyadh, formatMatchDate, formatKickoffTime } from '@/lib/timezone'
 import { MatchCard } from '@/components/matches/MatchCard'
+import { MatchesTabs } from '@/components/matches/MatchesTabs'
 import Link from 'next/link'
 import type { Match, Prediction } from '@/types'
 
@@ -37,9 +38,8 @@ export default async function MatchesPage() {
   const upcomingByDate = groupByDate(upcomingMatches)
   const pastByDate = groupByDate(pastMatches).reverse()
 
-  return (
-    <div className="max-w-2xl mx-auto px-4 py-6 space-y-8 animate-fade-in">
-
+  const upcomingContent = (
+    <div className="space-y-8">
       {/* Today */}
       <section>
         <h2 className="font-bold text-white mb-3 flex items-center gap-2">
@@ -102,14 +102,18 @@ export default async function MatchesPage() {
           ))}
         </section>
       )}
+    </div>
+  )
 
-      {/* Finished */}
-      {pastByDate.length > 0 && (
-        <section className="space-y-5">
-          <div className="flex items-center justify-between">
-            <h2 className="font-semibold text-gray-300 text-sm uppercase tracking-wider">منتهية</h2>
-            <span className="text-xs text-gray-500">اضغط على أي مباراة لمشاهدة توقعات الجميع</span>
-          </div>
+  const finishedContent = (
+    <div className="space-y-5">
+      {pastByDate.length === 0 ? (
+        <div className="glass rounded-xl p-6 text-center text-gray-400 text-sm">
+          لا توجد مباريات منتهية بعد
+        </div>
+      ) : (
+        <>
+          <p className="text-xs text-gray-500 text-center">اضغط على أي مباراة لمشاهدة توقعات الجميع</p>
           {pastByDate.map(([dateKey, dayMatches]) => (
             <div key={dateKey}>
               <div className="flex items-center gap-3 mb-2">
@@ -130,7 +134,7 @@ export default async function MatchesPage() {
                         <span className="text-sm font-bold text-brand-gold">
                           {m.status === 'finished' ? `${m.home_score} – ${m.away_score}` : '–'}
                         </span>
-                        <span className="text-[10px] text-brand-green group-hover:underline">التوقعات</span>
+                        <span className="text-[10px] text-brand-green">التوقعات ←</span>
                       </div>
                       <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
                         <span className="text-sm text-white truncate text-end">{m.away_team}</span>
@@ -142,8 +146,19 @@ export default async function MatchesPage() {
               </div>
             </div>
           ))}
-        </section>
+        </>
       )}
+    </div>
+  )
+
+  return (
+    <div className="max-w-2xl mx-auto px-4 py-6 space-y-4 animate-fade-in">
+      <h1 className="text-2xl font-bold text-white">المباريات</h1>
+      <MatchesTabs
+        upcomingContent={upcomingContent}
+        finishedContent={finishedContent}
+        finishedCount={pastMatches.length}
+      />
     </div>
   )
 }
