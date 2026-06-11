@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import { isMatchToday, isMatchLocked, matchDateInRiyadh, formatMatchDate, formatKickoffTime } from '@/lib/timezone'
+import { isMatchToday, matchDateInRiyadh, formatMatchDate, formatKickoffTime } from '@/lib/timezone'
 import { MatchCard } from '@/components/matches/MatchCard'
 import Link from 'next/link'
 import type { Match, Prediction } from '@/types'
@@ -29,9 +29,10 @@ export default async function MatchesPage() {
   const typedPredictions = (predictions ?? []) as Prediction[]
   const predictionMap = new Map(typedPredictions.map(p => [p.match_id, p]))
 
+  const now = new Date()
   const todayMatches = typedMatches.filter(m => isMatchToday(m.kickoff_time))
-  const upcomingMatches = typedMatches.filter(m => !isMatchToday(m.kickoff_time) && !isMatchLocked(m.kickoff_time, m.status))
-  const pastMatches = typedMatches.filter(m => !isMatchToday(m.kickoff_time) && isMatchLocked(m.kickoff_time, m.status))
+  const upcomingMatches = typedMatches.filter(m => !isMatchToday(m.kickoff_time) && new Date(m.kickoff_time) > now && m.status !== 'finished')
+  const pastMatches = typedMatches.filter(m => !isMatchToday(m.kickoff_time) && (m.status === 'finished' || new Date(m.kickoff_time) <= now))
 
   const upcomingByDate = groupByDate(upcomingMatches)
   const pastByDate = groupByDate(pastMatches).reverse()

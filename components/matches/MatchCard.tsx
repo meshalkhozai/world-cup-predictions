@@ -84,6 +84,7 @@ export function MatchCard({ match, prediction, userId }: Props) {
             </span>
           ) : (
             <>
+              <span className="text-sm font-bold text-gray-500">ضد</span>
               <span className="text-xs text-gray-400">{formatKickoffTime(match.kickoff_time)}</span>
               <span className="text-xs text-gray-500">بتوقيت مكة</span>
             </>
