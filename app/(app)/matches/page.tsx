@@ -106,7 +106,10 @@ export default async function MatchesPage() {
       {/* Finished */}
       {pastByDate.length > 0 && (
         <section className="space-y-5">
-          <h2 className="font-semibold text-gray-300 text-sm uppercase tracking-wider">منتهية</h2>
+          <div className="flex items-center justify-between">
+            <h2 className="font-semibold text-gray-300 text-sm uppercase tracking-wider">منتهية</h2>
+            <span className="text-xs text-gray-500">اضغط على أي مباراة لمشاهدة توقعات الجميع</span>
+          </div>
           {pastByDate.map(([dateKey, dayMatches]) => (
             <div key={dateKey}>
               <div className="flex items-center gap-3 mb-2">
@@ -117,15 +120,18 @@ export default async function MatchesPage() {
               </div>
               <div className="space-y-2">
                 {dayMatches.map(m => (
-                  <Link key={m.id} href={`/matches/${m.id}`} className="block">
+                  <Link key={m.id} href={`/matches/${m.id}`} className="block group">
                     <div className="glass rounded-xl px-4 py-3 flex items-center gap-3 hover:bg-white/5 transition-colors">
                       <div className="flex items-center gap-2 flex-1 min-w-0">
                         <span className="text-xl">{m.home_team_flag}</span>
                         <span className="text-sm text-white truncate">{m.home_team}</span>
                       </div>
-                      <span className="text-sm font-bold text-brand-gold px-2 shrink-0">
-                        {m.status === 'finished' ? `${m.home_score} – ${m.away_score}` : '–'}
-                      </span>
+                      <div className="flex flex-col items-center shrink-0 px-2">
+                        <span className="text-sm font-bold text-brand-gold">
+                          {m.status === 'finished' ? `${m.home_score} – ${m.away_score}` : '–'}
+                        </span>
+                        <span className="text-[10px] text-brand-green group-hover:underline">التوقعات</span>
+                      </div>
                       <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
                         <span className="text-sm text-white truncate text-end">{m.away_team}</span>
                         <span className="text-xl">{m.away_team_flag}</span>
