@@ -1,10 +1,11 @@
+import React from 'react'
 import { createClient } from '@/lib/supabase/server'
 import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { isMatchLocked, formatMatchDate, formatKickoffTime } from '@/lib/timezone'
 import { getPointsColor } from '@/lib/utils'
-import { ArrowRightIcon } from '@/components/icons'
+import { ArrowRightIcon, EqualIcon } from '@/components/icons'
 import type { Match, Prediction } from '@/types'
 
 interface PublicPrediction {
@@ -143,7 +144,7 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
           </div>
           <div className="space-y-2">
             <PctBar label={typedMatch.home_team} flag={typedMatch.home_team_flag ?? ''} pct={insights.home_win_pct} color="bg-blue-500" />
-            <PctBar label="تعادل" flag="🤝" pct={insights.draw_pct} color="bg-yellow-500" />
+            <PctBar label="تعادل" flag={<EqualIcon size={16} className="text-yellow-400" />} pct={insights.draw_pct} color="bg-yellow-500" />
             <PctBar label={typedMatch.away_team} flag={typedMatch.away_team_flag ?? ''} pct={insights.away_win_pct} color="bg-purple-500" />
           </div>
         </div>
@@ -187,7 +188,7 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
   )
 }
 
-function PctBar({ label, flag, pct, color }: { label: string; flag: string; pct: number; color: string }) {
+function PctBar({ label, flag, pct, color }: { label: string; flag: string | React.ReactNode; pct: number; color: string }) {
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between text-sm">
