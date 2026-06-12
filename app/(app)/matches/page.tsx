@@ -31,9 +31,9 @@ export default async function MatchesPage() {
   const predictionMap = new Map(typedPredictions.map(p => [p.match_id, p]))
 
   const now = new Date()
-  const todayMatches = typedMatches.filter(m => isMatchToday(m.kickoff_time))
+  const todayMatches = typedMatches.filter(m => isMatchToday(m.kickoff_time) && m.status !== 'finished')
   const upcomingMatches = typedMatches.filter(m => !isMatchToday(m.kickoff_time) && new Date(m.kickoff_time) > now && m.status !== 'finished')
-  const pastMatches = typedMatches.filter(m => !isMatchToday(m.kickoff_time) && (m.status === 'finished' || new Date(m.kickoff_time) <= now))
+  const pastMatches = typedMatches.filter(m => m.status === 'finished' || (!isMatchToday(m.kickoff_time) && new Date(m.kickoff_time) <= now))
 
   const upcomingByDate = groupByDate(upcomingMatches)
   const pastByDate = groupByDate(pastMatches).reverse()
