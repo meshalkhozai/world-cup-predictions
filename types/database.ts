@@ -99,6 +99,7 @@ export type Database = {
           predicted_away_score: number
           points_awarded: number
           created_at: string
+          updated_at: string
         }
         Insert: {
           id?: string
@@ -108,6 +109,7 @@ export type Database = {
           predicted_away_score: number
           points_awarded?: number
           created_at?: string
+          updated_at?: string
         }
         Update: {
           predicted_home_score?: number

@@ -14,6 +14,7 @@ interface PublicPrediction {
   predicted_home_score: number
   predicted_away_score: number
   points_awarded: number
+  updated_at: string
 }
 
 interface InsightRow {
@@ -49,9 +50,9 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
     const [{ data: preds }, { data: ins }] = await Promise.all([
       supabase
         .from('predictions')
-        .select('predicted_home_score, predicted_away_score, points_awarded, profiles(nickname, avatar_url)')
+        .select('predicted_home_score, predicted_away_score, points_awarded, updated_at, profiles(nickname, avatar_url)')
         .eq('match_id', id)
-        .order('created_at', { ascending: true }),
+        .order('updated_at', { ascending: true }),
       supabase.rpc('get_match_insights', { p_match_id: id }),
     ])
 
@@ -62,6 +63,7 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
       predicted_home_score: p.predicted_home_score,
       predicted_away_score: p.predicted_away_score,
       points_awarded: p.points_awarded,
+      updated_at: p.updated_at,
     }))
 
     insights = ((ins ?? []) as InsightRow[])[0] ?? null
@@ -164,7 +166,10 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
                     {p.nickname[0]?.toUpperCase()}
                   </div>
                 )}
-                <span className="text-sm text-white flex-1 truncate">{p.nickname}</span>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm text-white truncate">{p.nickname}</p>
+                  <p className="text-xs text-gray-500">{new Date(p.updated_at).toLocaleTimeString('ar-SA-u-nu-latn', { timeZone: 'Asia/Riyadh', hour: '2-digit', minute: '2-digit', hour12: true })}</p>
+                </div>
                 <span className="text-sm font-bold text-gray-300">
                   {p.predicted_home_score} – {p.predicted_away_score}
                 </span>

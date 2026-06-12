@@ -58,7 +58,7 @@ export default async function PredictionsPage() {
                     {p.match.home_team_flag} {p.match.home_team} ضد {p.match.away_team} {p.match.away_team_flag}
                   </p>
                   <p className="text-xs text-gray-400">
-                    {p.match.status === 'live' ? '🟢 مباشر الآن' : 'قادمة'} · توقعت {new Date(p.created_at).toLocaleTimeString('ar-SA-u-nu-latn', { timeZone: 'Asia/Riyadh', hour: '2-digit', minute: '2-digit', hour12: true })}
+                    {p.match.status === 'live' ? '🟢 مباشر الآن' : 'قادمة'} · توقعت {new Date(p.updated_at).toLocaleTimeString('ar-SA-u-nu-latn', { timeZone: 'Asia/Riyadh', hour: '2-digit', minute: '2-digit', hour12: true })}
                   </p>
                 </div>
                 <div className="text-end">
@@ -93,7 +93,7 @@ export default async function PredictionsPage() {
                         توقعك: <span className="text-gray-300 font-medium">{p.predicted_home_score} – {p.predicted_away_score}</span>
                       </span>
                     </div>
-                    <p className="text-xs text-gray-500 mt-0.5">توقعت {new Date(p.created_at).toLocaleTimeString('ar-SA-u-nu-latn', { timeZone: 'Asia/Riyadh', hour: '2-digit', minute: '2-digit', hour12: true })} · اضغط لمشاهدة توقعات الجميع ←</p>
+                    <p className="text-xs text-gray-500 mt-0.5">توقعت {new Date(p.updated_at).toLocaleTimeString('ar-SA-u-nu-latn', { timeZone: 'Asia/Riyadh', hour: '2-digit', minute: '2-digit', hour12: true })} · اضغط لمشاهدة توقعات الجميع ←</p>
                   </div>
                   <div className="text-end shrink-0">
                     <p className={`text-lg font-bold ${getPointsColor(p.points_awarded)}`}>+{p.points_awarded}</p>
