@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
 interface Props {
@@ -10,13 +10,15 @@ interface Props {
 }
 
 export function MatchesTabs({ upcomingContent, finishedContent, finishedCount }: Props) {
-  const [tab, setTab] = useState<'upcoming' | 'finished'>('upcoming')
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const tab = searchParams.get('tab') === 'finished' ? 'finished' : 'upcoming'
 
   return (
     <div className="space-y-4">
       <div className="flex gap-2 glass rounded-xl p-1">
         <button
-          onClick={() => setTab('upcoming')}
+          onClick={() => router.push('?tab=upcoming')}
           className={cn(
             'flex-1 py-2 rounded-lg text-sm font-semibold transition-colors',
             tab === 'upcoming' ? 'bg-brand-green text-brand-dark' : 'text-gray-400 hover:text-white'
@@ -25,7 +27,7 @@ export function MatchesTabs({ upcomingContent, finishedContent, finishedCount }:
           قادمة
         </button>
         <button
-          onClick={() => setTab('finished')}
+          onClick={() => router.push('?tab=finished')}
           className={cn(
             'flex-1 py-2 rounded-lg text-sm font-semibold transition-colors',
             tab === 'finished' ? 'bg-brand-green text-brand-dark' : 'text-gray-400 hover:text-white'
