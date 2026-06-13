@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import { formatMatchDate, formatKickoffTime } from '@/lib/timezone'
+import { formatMatchDate, formatKickoffTime, isMatchLocked } from '@/lib/timezone'
 import { MatchCard } from './MatchCard'
 import type { Match, Prediction } from '@/types'
 
@@ -86,7 +86,14 @@ export function MatchesTabs({ todayMatches, upcomingByDate, pastByDate, predicti
                     <div className="flex-1 h-px bg-white/10" />
                   </div>
                   <div className="space-y-2">
-                    {matches.map(m => (
+                    {matches.map(m => !isMatchLocked(m.kickoff_time, m.status) ? (
+                      <MatchCard
+                        key={m.id}
+                        match={m}
+                        prediction={predictionMap[m.id] ?? null}
+                        userId={userId}
+                      />
+                    ) : (
                       <Link key={m.id} href={`/matches/${m.id}`} className="block">
                         <div className="glass rounded-xl px-4 py-3 flex items-center gap-3 hover:bg-white/5 transition-colors">
                           <div className="flex items-center gap-2 flex-1 min-w-0">
