@@ -23,7 +23,7 @@ export default async function PredictionsPage() {
     .from('predictions')
     .select('*, match:matches(*)')
     .eq('user_id', user.id)
-    .order('created_at', { ascending: false })
+    .order('created_at', { ascending: true })
 
   const predictions = (data ?? []) as PredictionWithMatch[]
   const finished = predictions.filter(p => p.match?.status === 'finished')
