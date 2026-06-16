@@ -42,7 +42,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ nickna
 
   const typedPredictions = ((predictions ?? []) as PredictionRow[])
     .filter(p => p.match?.status === 'finished')
-  const totalPredictions = (profile.exact_predictions ?? 0) + (profile.correct_predictions ?? 0) + (profile.wrong_predictions ?? 0)
+  const totalPredictions = typedPredictions.length
   const isMe = profile.id === user.id
 
   return (
