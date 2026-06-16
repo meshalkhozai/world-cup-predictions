@@ -38,11 +38,10 @@ export default async function ProfilePage({ params }: { params: Promise<{ nickna
     .from('predictions')
     .select('*, match:matches(*)')
     .eq('user_id', profile.id)
-    .order('created_at', { ascending: false })
+    .order('created_at', { ascending: true })
 
   const typedPredictions = ((predictions ?? []) as PredictionRow[])
     .filter(p => p.match?.status === 'finished')
-    .slice(0, 10)
   const totalPredictions = (profile.exact_predictions ?? 0) + (profile.correct_predictions ?? 0) + (profile.wrong_predictions ?? 0)
   const isMe = profile.id === user.id
 
@@ -78,7 +77,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ nickna
 
       {/* Recent predictions */}
       <section>
-        <h2 className="font-semibold text-white mb-3">آخر التوقعات</h2>
+        <h2 className="font-semibold text-white mb-3">التوقعات</h2>
         {typedPredictions.length === 0 ? (
           <div className="glass rounded-xl p-6 text-center text-gray-400 text-sm">
             لا توجد توقعات على مباريات منتهية بعد
