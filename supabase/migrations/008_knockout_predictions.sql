@@ -116,14 +116,28 @@ BEGIN
         -- User predicted draw (picked winner via popup)
         ELSE
           CASE
-            -- Exact draw score + correct winner via penalties → 3
-            WHEN v_match.home_score = v_match.away_score
-             AND predicted_home_score = v_match.home_score
-             AND predicted_away_score = v_match.away_score
-             AND predicted_winner = v_match.knockout_winner THEN 3
-            -- Correct advancing team (any path) → 1
-            WHEN predicted_winner = v_match.knockout_winner THEN 1
-            ELSE 0
+            -- Actual ended in draw (went to penalties)
+            WHEN v_match.home_score = v_match.away_score THEN
+              CASE
+                -- Exact draw score + correct winner → 4
+                WHEN predicted_home_score = v_match.home_score
+                 AND predicted_away_score = v_match.away_score
+                 AND predicted_winner = v_match.knockout_winner THEN 4
+                -- Exact draw score + wrong winner → 3
+                WHEN predicted_home_score = v_match.home_score
+                 AND predicted_away_score = v_match.away_score THEN 3
+                -- Wrong draw score + correct winner → 2
+                WHEN predicted_winner = v_match.knockout_winner THEN 2
+                -- Wrong draw score + wrong winner → 1
+                ELSE 1
+              END
+            -- Actual ended with direct winner (no draw)
+            ELSE
+              CASE
+                -- Picked correct winner → 1
+                WHEN predicted_winner = v_match.knockout_winner THEN 1
+                ELSE 0
+              END
           END
       END
       WHERE match_id = v_match.id;
