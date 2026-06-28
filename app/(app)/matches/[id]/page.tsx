@@ -13,6 +13,7 @@ interface PublicPrediction {
   avatar_url: string | null
   predicted_home_score: number
   predicted_away_score: number
+  predicted_winner: 'home' | 'away' | null
   points_awarded: number
   updated_at: string
 }
@@ -50,7 +51,7 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
     const [{ data: preds }, { data: ins }] = await Promise.all([
       supabase
         .from('predictions')
-        .select('predicted_home_score, predicted_away_score, points_awarded, updated_at, profiles(nickname, avatar_url)')
+        .select('predicted_home_score, predicted_away_score, predicted_winner, points_awarded, updated_at, profiles(nickname, avatar_url)')
         .eq('match_id', id)
         .order('updated_at', { ascending: true }),
       supabase.rpc('get_match_insights', { p_match_id: id }),
@@ -62,6 +63,7 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
       avatar_url: (Array.isArray(p.profiles) ? p.profiles[0]?.avatar_url : p.profiles?.avatar_url) ?? null,
       predicted_home_score: p.predicted_home_score,
       predicted_away_score: p.predicted_away_score,
+      predicted_winner: p.predicted_winner ?? null,
       points_awarded: p.points_awarded,
       updated_at: p.updated_at,
     }))
@@ -170,9 +172,16 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
                   <p className="text-sm text-white truncate">{p.nickname}</p>
                   <p className="text-xs text-gray-500">{new Date(p.updated_at).toLocaleTimeString('ar-SA-u-nu-latn', { timeZone: 'Asia/Riyadh', hour: '2-digit', minute: '2-digit', hour12: true })}</p>
                 </div>
-                <span className="text-sm font-bold text-gray-300">
-                  {p.predicted_home_score} – {p.predicted_away_score}
-                </span>
+                <div className="text-end shrink-0">
+                  <span className="text-sm font-bold text-gray-300">
+                    {p.predicted_home_score} – {p.predicted_away_score}
+                  </span>
+                  {p.predicted_winner && p.predicted_home_score === p.predicted_away_score && (
+                    <p className="text-[10px] text-gray-500">
+                      يتأهل: <span className="text-gray-400">{p.predicted_winner === 'home' ? typedMatch.home_team : typedMatch.away_team}</span>
+                    </p>
+                  )}
+                </div>
                 {typedMatch.status === 'finished' && (
                   <span className={`text-xs font-semibold w-14 text-end ${getPointsColor(p.points_awarded)}`}>
                     +{p.points_awarded} نقطة
