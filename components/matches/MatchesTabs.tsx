@@ -95,20 +95,27 @@ export function MatchesTabs({ todayMatches, upcomingByDate, pastByDate, predicti
                       />
                     ) : (
                       <Link key={m.id} href={`/matches/${m.id}`} className="block">
-                        <div className="glass rounded-xl px-4 py-3 flex items-center gap-3 hover:bg-white/5 transition-colors">
-                          <div className="flex items-center gap-2 flex-1 min-w-0">
-                            <span className="text-xl">{m.home_team_flag}</span>
-                            <span className="text-sm text-white truncate">{m.home_team}</span>
-                          </div>
-                          <div className="flex flex-col items-center shrink-0 px-1">
-                            <span className="text-xs font-semibold text-gray-300 tabular-nums">
-                              {formatKickoffTime(m.kickoff_time)}
-                            </span>
-                            <span className="text-[10px] text-gray-500">بتوقيت مكة</span>
-                          </div>
-                          <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
-                            <span className="text-sm text-white truncate text-end">{m.away_team}</span>
-                            <span className="text-xl">{m.away_team_flag}</span>
+                        <div className={`glass rounded-xl overflow-hidden hover:bg-white/5 transition-colors ${m.is_featured ? 'ring-1 ring-brand-gold/40' : ''}`}>
+                          {m.is_featured && (
+                            <div className="bg-brand-gold/10 text-brand-gold text-[10px] font-bold text-center py-1 tracking-wide">
+                              ⭐ مباراة مميزة · التوقع الدقيق = نقاط مضاعفة
+                            </div>
+                          )}
+                          <div className="px-4 py-3 flex items-center gap-3">
+                            <div className="flex items-center gap-2 flex-1 min-w-0">
+                              <span className="text-xl">{m.home_team_flag}</span>
+                              <span className="text-sm text-white truncate">{m.home_team}</span>
+                            </div>
+                            <div className="flex flex-col items-center shrink-0 px-1">
+                              <span className="text-xs font-semibold text-gray-300 tabular-nums">
+                                {formatKickoffTime(m.kickoff_time)}
+                              </span>
+                              <span className="text-[10px] text-gray-500">بتوقيت مكة</span>
+                            </div>
+                            <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
+                              <span className="text-sm text-white truncate text-end">{m.away_team}</span>
+                              <span className="text-xl">{m.away_team_flag}</span>
+                            </div>
                           </div>
                         </div>
                       </Link>
