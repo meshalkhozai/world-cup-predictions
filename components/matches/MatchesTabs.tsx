@@ -95,9 +95,9 @@ export function MatchesTabs({ todayMatches, upcomingByDate, pastByDate, predicti
                       />
                     ) : (
                       <Link key={m.id} href={`/matches/${m.id}`} className="block">
-                        <div className={`glass rounded-xl overflow-hidden hover:bg-white/5 transition-colors ${m.is_featured ? 'ring-1 ring-brand-gold/40' : ''}`}>
+                        <div className="glass rounded-xl overflow-hidden hover:bg-white/5 transition-colors">
                           {m.is_featured && (
-                            <div className="bg-brand-gold/10 text-brand-gold text-[10px] font-bold text-center py-1 tracking-wide">
+                            <div className="bg-white/5 text-brand-gold text-[10px] font-bold text-center py-1 tracking-wide">
                               ⭐ مباراة مميزة · التوقع الدقيق = نقاط مضاعفة
                             </div>
                           )}

@@ -92,10 +92,10 @@ export function MatchCard({ match, prediction, userId }: Props) {
   }
 
   return (
-    <div className={`glass rounded-2xl p-5 space-y-4 ${match.is_featured ? 'ring-1 ring-brand-gold/40' : ''}`}>
+    <div className="glass rounded-2xl p-5 space-y-4">
       {/* Featured badge */}
       {match.is_featured && (
-        <div className="flex items-center justify-center gap-1.5 bg-brand-gold/10 rounded-xl py-1.5">
+        <div className="flex items-center justify-center gap-1.5 bg-white/5 rounded-xl py-1.5">
           <span className="text-brand-gold text-xs font-bold tracking-wide">⭐ مباراة مميزة · التوقع الدقيق = نقاط مضاعفة</span>
         </div>
       )}
@@ -198,13 +198,10 @@ export function MatchCard({ match, prediction, userId }: Props) {
 
           {/* Draw winner popup */}
           {showDrawPopup && (
-            <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/70 backdrop-blur-sm animate-fade-in">
-              <div className="w-full sm:max-w-sm bg-[#0f1923] border border-white/10 rounded-t-3xl sm:rounded-2xl p-6 space-y-5">
+            <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
+              <div className="glass w-full sm:max-w-sm rounded-t-3xl sm:rounded-2xl p-6 space-y-5">
                 {/* Header */}
-                <div className="text-center space-y-1.5">
-                  <div className="inline-flex items-center gap-2 bg-brand-gold/10 text-brand-gold text-xs font-semibold px-3 py-1 rounded-full">
-                    ركلات الترجيح
-                  </div>
+                <div className="text-center space-y-1">
                   <p className="text-white font-bold text-lg">من يتأهل؟</p>
                   <p className="text-gray-400 text-sm">توقعت تعادل <span className="text-white font-semibold">{pendingH}–{pendingA}</span> · اختر الفريق المتأهل</p>
                 </div>
@@ -214,24 +211,24 @@ export function MatchCard({ match, prediction, userId }: Props) {
                   <button
                     onClick={() => savePrediction(pendingH, pendingA, 'home')}
                     disabled={saving}
-                    className="group flex flex-col items-center gap-3 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-green hover:bg-brand-green/5 active:scale-95 transition-all duration-150 disabled:opacity-40"
+                    className="group flex flex-col items-center gap-3 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-green/50 hover:bg-white/10 active:scale-95 transition-all duration-150 disabled:opacity-40"
                   >
                     <span className="text-5xl group-hover:scale-110 transition-transform duration-150">{match.home_team_flag}</span>
-                    <span className="text-sm font-bold text-white text-center leading-tight">{match.home_team}</span>
+                    <span className="text-sm font-semibold text-white text-center leading-tight">{match.home_team}</span>
                   </button>
                   <button
                     onClick={() => savePrediction(pendingH, pendingA, 'away')}
                     disabled={saving}
-                    className="group flex flex-col items-center gap-3 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-green hover:bg-brand-green/5 active:scale-95 transition-all duration-150 disabled:opacity-40"
+                    className="group flex flex-col items-center gap-3 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-green/50 hover:bg-white/10 active:scale-95 transition-all duration-150 disabled:opacity-40"
                   >
                     <span className="text-5xl group-hover:scale-110 transition-transform duration-150">{match.away_team_flag}</span>
-                    <span className="text-sm font-bold text-white text-center leading-tight">{match.away_team}</span>
+                    <span className="text-sm font-semibold text-white text-center leading-tight">{match.away_team}</span>
                   </button>
                 </div>
 
                 <button
                   onClick={() => setShowDrawPopup(false)}
-                  className="w-full py-2 text-sm text-gray-500 hover:text-gray-300 transition-colors"
+                  className="w-full py-2 text-sm text-gray-400 hover:text-white transition-colors"
                 >
                   إلغاء
                 </button>
