@@ -109,6 +109,8 @@ interface ApiMatch {
   awayRef: string | null
   homeScore: number | null
   awayScore: number | null
+  extraTime: boolean
+  penalties: { homeScore: number; awayScore: number; winner?: 'home' | 'away' } | null
   stadium: string | null
 }
 
@@ -132,6 +134,22 @@ export interface ZafronixMatch {
   status: 'upcoming' | 'finished'
   stage: string
   venue: string | null
+  knockout_winner: 'home' | 'away' | null
+}
+
+function getKnockoutWinner(m: ApiMatch, stage: string): 'home' | 'away' | null {
+  if (stage === 'group') return null
+  if (m.homeScore === null || m.awayScore === null) return null
+  // Penalty shootout determines winner
+  if (m.penalties) {
+    if (m.penalties.winner) return m.penalties.winner
+    if (m.penalties.homeScore > m.penalties.awayScore) return 'home'
+    if (m.penalties.awayScore > m.penalties.homeScore) return 'away'
+  }
+  // Regular/ET result
+  if (m.homeScore > m.awayScore) return 'home'
+  if (m.awayScore > m.homeScore) return 'away'
+  return null
 }
 
 async function fetchPage(cursor?: string): Promise<ApiPage> {
@@ -191,6 +209,7 @@ export async function fetchAllMatches(): Promise<ZafronixMatch[]> {
       const homeTeam = m.homeTeam ? normalizeName(m.homeTeam) : normalizeName(resolvedHome) || resolvedHome
       const awayTeam = m.awayTeam ? normalizeName(m.awayTeam) : normalizeName(resolvedAway) || resolvedAway
       const finished = m.homeScore !== null && m.awayScore !== null
+      const stage = mapStage(m.stageNormalized)
 
       all.push({
         external_id: m.id,
@@ -202,8 +221,9 @@ export async function fetchAllMatches(): Promise<ZafronixMatch[]> {
         home_score: m.homeScore,
         away_score: m.awayScore,
         status: finished ? 'finished' : 'upcoming',
-        stage: mapStage(m.stageNormalized),
+        stage,
         venue: m.stadium ?? null,
+        knockout_winner: getKnockoutWinner(m, stage),
       })
     }
 

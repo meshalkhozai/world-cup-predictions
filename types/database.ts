@@ -60,6 +60,7 @@ export type Database = {
           status: 'upcoming' | 'live' | 'finished'
           stage: 'group' | 'round_of_32' | 'round_of_16' | 'quarter_final' | 'semi_final' | 'third_place' | 'final'
           venue: string | null
+          knockout_winner: 'home' | 'away' | null
           created_at: string
         }
         Insert: {
@@ -74,6 +75,7 @@ export type Database = {
           status?: 'upcoming' | 'live' | 'finished'
           stage?: 'group' | 'round_of_32' | 'round_of_16' | 'quarter_final' | 'semi_final' | 'third_place' | 'final'
           venue?: string | null
+          knockout_winner?: 'home' | 'away' | null
           created_at?: string
         }
         Update: {
@@ -87,6 +89,7 @@ export type Database = {
           status?: 'upcoming' | 'live' | 'finished'
           stage?: 'group' | 'round_of_32' | 'round_of_16' | 'quarter_final' | 'semi_final' | 'third_place' | 'final'
           venue?: string | null
+          knockout_winner?: 'home' | 'away' | null
         }
         Relationships: []
       }
@@ -97,6 +100,7 @@ export type Database = {
           match_id: string
           predicted_home_score: number
           predicted_away_score: number
+          predicted_winner: 'home' | 'away' | null
           points_awarded: number
           created_at: string
           updated_at: string
@@ -107,6 +111,7 @@ export type Database = {
           match_id: string
           predicted_home_score: number
           predicted_away_score: number
+          predicted_winner?: 'home' | 'away' | null
           points_awarded?: number
           created_at?: string
           updated_at?: string
@@ -114,6 +119,7 @@ export type Database = {
         Update: {
           predicted_home_score?: number
           predicted_away_score?: number
+          predicted_winner?: 'home' | 'away' | null
         }
         Relationships: [
           {
