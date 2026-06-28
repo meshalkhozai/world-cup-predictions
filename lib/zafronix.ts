@@ -103,8 +103,10 @@ interface ApiMatch {
   id: string
   kickoffUtc: string
   stageNormalized: string
-  homeTeam: string
-  awayTeam: string
+  homeTeam: string | null
+  awayTeam: string | null
+  homeRef: string | null
+  awayRef: string | null
   homeScore: number | null
   awayScore: number | null
   stadium: string | null
@@ -156,19 +158,21 @@ export async function fetchAllMatches(): Promise<ZafronixMatch[]> {
     const page = await fetchPage(cursor)
 
     for (const m of page.data) {
-      // Skip matches where teams aren't decided yet (knockout placeholders)
-      if (!m.homeTeam || !m.awayTeam) continue
+      // Use homeRef/awayRef as fallback when teams aren't decided yet
+      const rawHome = m.homeTeam || m.homeRef
+      const rawAway = m.awayTeam || m.awayRef
+      if (!rawHome || !rawAway) continue
 
-      const homeTeam = normalizeName(m.homeTeam)
-      const awayTeam = normalizeName(m.awayTeam)
+      const homeTeam = m.homeTeam ? normalizeName(m.homeTeam) : rawHome
+      const awayTeam = m.awayTeam ? normalizeName(m.awayTeam) : rawAway
       const finished = m.homeScore !== null && m.awayScore !== null
 
       all.push({
         external_id: m.id,
         home_team: homeTeam,
         away_team: awayTeam,
-        home_team_flag: getFlag(m.homeTeam),
-        away_team_flag: getFlag(m.awayTeam),
+        home_team_flag: m.homeTeam ? getFlag(m.homeTeam) : '🏳️',
+      away_team_flag: m.awayTeam ? getFlag(m.awayTeam) : '🏳️',
         kickoff_time: m.kickoffUtc,
         home_score: m.homeScore,
         away_score: m.awayScore,
