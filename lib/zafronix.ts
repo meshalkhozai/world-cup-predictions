@@ -150,29 +150,54 @@ async function fetchPage(cursor?: string): Promise<ApiPage> {
   return res.json()
 }
 
+// Fetch bracket to resolve knockout placeholder team names (e.g. "2A" → "Canada")
+async function fetchBracketTeamMap(): Promise<Record<string, { home: string | null; away: string | null }>> {
+  const res = await fetch(`${BASE_URL}/bracket?year=2026`, {
+    headers: { 'X-API-Key': process.env.ZAFRONIX_API_KEY! },
+    cache: 'no-store',
+  })
+  if (!res.ok) return {}
+
+  const data = await res.json()
+  const map: Record<string, { home: string | null; away: string | null }> = {}
+
+  for (const matches of Object.values(data.stages ?? {}) as any[][]) {
+    for (const m of matches) {
+      if (m.matchId) {
+        map[m.matchId] = { home: m.home ?? null, away: m.away ?? null }
+      }
+    }
+  }
+  return map
+}
+
 export async function fetchAllMatches(): Promise<ZafronixMatch[]> {
   const all: ZafronixMatch[] = []
   let cursor: string | undefined
+
+  // Fetch bracket once to resolve knockout team names
+  const bracketMap = await fetchBracketTeamMap()
 
   do {
     const page = await fetchPage(cursor)
 
     for (const m of page.data) {
-      // Use homeRef/awayRef as fallback when teams aren't decided yet
-      const rawHome = m.homeTeam || m.homeRef
-      const rawAway = m.awayTeam || m.awayRef
-      if (!rawHome || !rawAway) continue
+      // For knockout matches: use bracket resolved names, fallback to homeRef/awayRef
+      const bracket = bracketMap[m.id]
+      const resolvedHome = m.homeTeam ?? bracket?.home ?? m.homeRef
+      const resolvedAway = m.awayTeam ?? bracket?.away ?? m.awayRef
+      if (!resolvedHome || !resolvedAway) continue
 
-      const homeTeam = m.homeTeam ? normalizeName(m.homeTeam) : rawHome
-      const awayTeam = m.awayTeam ? normalizeName(m.awayTeam) : rawAway
+      const homeTeam = m.homeTeam ? normalizeName(m.homeTeam) : normalizeName(resolvedHome) || resolvedHome
+      const awayTeam = m.awayTeam ? normalizeName(m.awayTeam) : normalizeName(resolvedAway) || resolvedAway
       const finished = m.homeScore !== null && m.awayScore !== null
 
       all.push({
         external_id: m.id,
         home_team: homeTeam,
         away_team: awayTeam,
-        home_team_flag: m.homeTeam ? getFlag(m.homeTeam) : '🏳️',
-      away_team_flag: m.awayTeam ? getFlag(m.awayTeam) : '🏳️',
+        home_team_flag: m.homeTeam ? getFlag(m.homeTeam) : (bracket?.home ? getFlag(bracket.home) : '🏳️'),
+        away_team_flag: m.awayTeam ? getFlag(m.awayTeam) : (bracket?.away ? getFlag(bracket.away) : '🏳️'),
         kickoff_time: m.kickoffUtc,
         home_score: m.homeScore,
         away_score: m.awayScore,
