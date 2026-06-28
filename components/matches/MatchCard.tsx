@@ -92,7 +92,14 @@ export function MatchCard({ match, prediction, userId }: Props) {
   }
 
   return (
-    <div className="glass rounded-2xl p-5 space-y-4">
+    <div className={`glass rounded-2xl p-5 space-y-4 ${match.is_featured ? 'ring-1 ring-brand-gold/40' : ''}`}>
+      {/* Featured badge */}
+      {match.is_featured && (
+        <div className="flex items-center justify-center gap-1.5 bg-brand-gold/10 rounded-xl py-1.5">
+          <span className="text-brand-gold text-xs font-bold tracking-wide">⭐ مباراة مميزة · التوقع الدقيق = نقاط مضاعفة</span>
+        </div>
+      )}
+
       {/* Teams row */}
       <div className="flex items-center justify-between">
         <div className="flex flex-col items-center gap-1 flex-1">

@@ -61,6 +61,7 @@ export type Database = {
           stage: 'group' | 'round_of_32' | 'round_of_16' | 'quarter_final' | 'semi_final' | 'third_place' | 'final'
           venue: string | null
           knockout_winner: 'home' | 'away' | null
+          is_featured: boolean
           created_at: string
         }
         Insert: {
@@ -76,6 +77,7 @@ export type Database = {
           stage?: 'group' | 'round_of_32' | 'round_of_16' | 'quarter_final' | 'semi_final' | 'third_place' | 'final'
           venue?: string | null
           knockout_winner?: 'home' | 'away' | null
+          is_featured?: boolean
           created_at?: string
         }
         Update: {
@@ -90,6 +92,7 @@ export type Database = {
           stage?: 'group' | 'round_of_32' | 'round_of_16' | 'quarter_final' | 'semi_final' | 'third_place' | 'final'
           venue?: string | null
           knockout_winner?: 'home' | 'away' | null
+          is_featured?: boolean
         }
         Relationships: []
       }
