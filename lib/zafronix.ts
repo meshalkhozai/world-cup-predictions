@@ -182,10 +182,10 @@ export async function fetchAllMatches(): Promise<ZafronixMatch[]> {
     const page = await fetchPage(cursor)
 
     for (const m of page.data) {
-      // For knockout matches: use bracket resolved names, fallback to homeRef/awayRef
+      // For knockout matches: use bracket resolved names only (no homeRef fallback)
       const bracket = bracketMap[m.id]
-      const resolvedHome = m.homeTeam ?? bracket?.home ?? m.homeRef
-      const resolvedAway = m.awayTeam ?? bracket?.away ?? m.awayRef
+      const resolvedHome = m.homeTeam ?? bracket?.home ?? null
+      const resolvedAway = m.awayTeam ?? bracket?.away ?? null
       if (!resolvedHome || !resolvedAway) continue
 
       const homeTeam = m.homeTeam ? normalizeName(m.homeTeam) : normalizeName(resolvedHome) || resolvedHome
