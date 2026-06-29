@@ -73,7 +73,7 @@ export default async function DashboardPage() {
                     <span className="text-sm font-medium text-white truncate">{match.home_team}</span>
                   </div>
                   <div className="text-center px-3">
-                    {isMatchLocked(match.kickoff_time, match.status) ? (
+                    {isMatchLocked(match.kickoff_time, match.status, match.stage) ? (
                       <span className="text-xs font-bold text-gray-300">
                         {match.status === 'finished' ? `${match.home_score} - ${match.away_score}` : 'مباشر'}
                       </span>

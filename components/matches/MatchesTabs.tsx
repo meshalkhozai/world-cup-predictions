@@ -86,7 +86,7 @@ export function MatchesTabs({ todayMatches, upcomingByDate, pastByDate, predicti
                     <div className="flex-1 h-px bg-white/10" />
                   </div>
                   <div className="space-y-2">
-                    {matches.map(m => !isMatchLocked(m.kickoff_time, m.status) ? (
+                    {matches.map(m => !isMatchLocked(m.kickoff_time, m.status, m.stage) ? (
                       <MatchCard
                         key={m.id}
                         match={m}

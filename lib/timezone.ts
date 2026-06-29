@@ -19,11 +19,13 @@ export function isMatchToday(kickoffTime: string): boolean {
 
 const PREDICTION_WINDOW_HOURS = 8
 
-export function isMatchLocked(kickoffTime: string, status?: string): boolean {
+export function isMatchLocked(kickoffTime: string, status?: string, stage?: string): boolean {
   if (status === 'finished' || status === 'live') return true
   const now = Date.now()
   const kickoff = new Date(kickoffTime).getTime()
   if (now >= kickoff) return true
+  // Round of 32: always open until kickoff
+  if (stage === 'round_of_32') return false
   // Open if match is today OR within 8 hours
   const isToday = matchDateInRiyadh(kickoffTime) === todayInRiyadh()
   const hoursUntil = (kickoff - now) / (1000 * 60 * 60)

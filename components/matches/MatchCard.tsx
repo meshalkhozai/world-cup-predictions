@@ -19,7 +19,7 @@ interface Props {
 export function MatchCard({ match, prediction, userId }: Props) {
   const router = useRouter()
   const supabase = createClient()
-  const locked = isMatchLocked(match.kickoff_time, match.status)
+  const locked = isMatchLocked(match.kickoff_time, match.status, match.stage)
   const hoursLeft = locked && match.status === 'upcoming' ? hoursUntilPredictionOpen(match.kickoff_time) : 0
   const tooEarly = hoursLeft > 0
   const isKnockout = KNOCKOUT_STAGES.has(match.stage)
@@ -75,7 +75,7 @@ export function MatchCard({ match, prediction, userId }: Props) {
       setError('أدخل نتيجة صحيحة')
       return
     }
-    if (isMatchLocked(match.kickoff_time, match.status)) {
+    if (isMatchLocked(match.kickoff_time, match.status, match.stage)) {
       setError('التوقعات مغلقة — المباراة بدأت')
       return
     }

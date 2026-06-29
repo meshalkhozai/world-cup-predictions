@@ -35,7 +35,7 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
   if (!match) notFound()
 
   const typedMatch = match as Match
-  const locked = isMatchLocked(typedMatch.kickoff_time, typedMatch.status)
+  const locked = isMatchLocked(typedMatch.kickoff_time, typedMatch.status, typedMatch.stage)
 
   const { data: myPrediction } = await supabase
     .from('predictions')
