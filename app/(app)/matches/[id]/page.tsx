@@ -124,8 +124,8 @@ export default async function MatchDetailPage({ params }: { params: Promise<{ id
             </p>
             {typedMatch.status === 'finished' && (
               <p className={`text-sm font-semibold mt-1 ${getPointsColor(typedMyPrediction.points_awarded)}`}>
-                {typedMyPrediction.points_awarded === 3 ? '🎯 توقع دقيق! +3 نقاط' :
-                 typedMyPrediction.points_awarded === 1 ? '✓ نتيجة صحيحة +1 نقطة' : '✗ توقع خاطئ +0'}
+                {typedMyPrediction.points_awarded >= 3 ? `🎯 توقع دقيق! +${typedMyPrediction.points_awarded} نقاط` :
+                 typedMyPrediction.points_awarded > 0 ? `✓ نتيجة صحيحة +${typedMyPrediction.points_awarded} نقطة` : '✗ توقع خاطئ +0'}
               </p>
             )}
           </div>

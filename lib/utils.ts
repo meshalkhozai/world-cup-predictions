@@ -13,8 +13,8 @@ export function getPointsLabel(points: number): string {
 }
 
 export function getPointsColor(points: number): string {
-  if (points === 3) return 'text-brand-gold'
-  if (points === 1) return 'text-brand-green'
-  return 'text-white/40'
+  if (points >= 3) return 'text-brand-gold'
+  if (points > 0) return 'text-brand-green'
+  return 'text-gray-500'
 }
 

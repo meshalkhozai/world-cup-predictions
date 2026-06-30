@@ -47,6 +47,7 @@ const TEAM_NAME_MAP: Record<string, string> = {
   'Jordan': 'الأردن',
   'Portugal': 'البرتغال',
   'Congo DR': 'الكونغو الديمقراطية',
+  'DR Congo': 'الكونغو الديمقراطية',
   'Uzbekistan': 'أوزبكستان',
   'Colombia': 'كولومبيا',
   'England': 'إنجلترا',
@@ -68,7 +69,7 @@ const FLAG_MAP: Record<string, string> = {
   'Cabo Verde': '🇨🇻', 'Saudi Arabia': '🇸🇦', 'Uruguay': '🇺🇾',
   'France': '🇫🇷', 'Senegal': '🇸🇳', 'Iraq': '🇮🇶', 'Norway': '🇳🇴',
   'Argentina': '🇦🇷', 'Algeria': '🇩🇿', 'Austria': '🇦🇹',
-  'Jordan': '🇯🇴', 'Portugal': '🇵🇹', 'Congo DR': '🇨🇩',
+  'Jordan': '🇯🇴', 'Portugal': '🇵🇹', 'Congo DR': '🇨🇩', 'DR Congo': '🇨🇩',
   'Uzbekistan': '🇺🇿', 'Colombia': '🇨🇴', 'England': '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
   'Croatia': '🇭🇷', 'Ghana': '🇬🇭', 'Panama': '🇵🇦',
 }
