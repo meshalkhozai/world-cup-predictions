@@ -111,7 +111,7 @@ interface ApiMatch {
   homeScore: number | null
   awayScore: number | null
   extraTime: boolean
-  penalties: { homeScore: number; awayScore: number; winner?: 'home' | 'away' } | null
+  penalties: { home?: number; away?: number; homeScore?: number; awayScore?: number; winner?: 'home' | 'away' } | null
   stadium: string | null
 }
 
@@ -144,8 +144,11 @@ function getKnockoutWinner(m: ApiMatch, stage: string): 'home' | 'away' | null {
   // Penalty shootout determines winner
   if (m.penalties) {
     if (m.penalties.winner) return m.penalties.winner
-    if (m.penalties.homeScore > m.penalties.awayScore) return 'home'
-    if (m.penalties.awayScore > m.penalties.homeScore) return 'away'
+    // API uses either {home, away} or {homeScore, awayScore}
+    const ph = m.penalties.home ?? m.penalties.homeScore ?? 0
+    const pa = m.penalties.away ?? m.penalties.awayScore ?? 0
+    if (ph > pa) return 'home'
+    if (pa > ph) return 'away'
   }
   // Regular/ET result
   if (m.homeScore > m.awayScore) return 'home'
